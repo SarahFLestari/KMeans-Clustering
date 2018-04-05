@@ -8,10 +8,18 @@ x = []
 y = []
 arr = []
 
-file = open('TrainsetTugas2.txt')
+# file = open('TrainsetTugas2.txt')
+
+# #read data 
+# with open('TrainsetTugas2.txt') as f:
+# 	lines = f.readlines()
+# 	x = [float(line.split()[0]) for line in lines]
+# 	y = [float(line.split()[1]) for line in lines]
+
+file = open('train.txt')
 
 #read data 
-with open('TrainsetTugas2.txt') as f:
+with open('train.txt') as f:
 	lines = f.readlines()
 	x = [float(line.split()[0]) for line in lines]
 	y = [float(line.split()[1]) for line in lines]
@@ -36,17 +44,56 @@ for i in range(len(dataTrain)):
 # pyplot.show()
 
 k = 3
-centroid = []
-centroid = nmp.random.rand(k,2)
+centroid = [[nmp.random.uniform(0,40),nmp.random.uniform(0,35)] for i in range(k)]
 
+# print("ini centroid")
 # print(centroid)
 
-for i in range(len(dataTrain)):
-	for j in range(len(centroid)):
-		jarak = []
-		hasil = euclid(dataTrain[i][0],dataTrain[i][1],centroid[j][0],centroid[j][1])
-		jarak.append(hasil)
-		print(count(jarak))
+dist = []
+cent = 0
+for i in range(len(centroid)):
+	dist.append([])
+	for j in range(len(dataTrain)):
+		hasil = euclid(dataTrain[j][0],dataTrain[j][1],centroid[i][0],centroid[i][1])
+		dist[cent].append(hasil)
+	cent+=1
+print("ini distance")
+print(dist)
+kelas = nmp.array(dist)
+datakelas = []
+for i in range(len(kelas[0])):
+	kolom = kelas[:,i]
+	print (kolom.tolist().index(min(kolom)))
+	datakelas.append([kolom.tolist().index(min(kolom)), min(kolom)])
+# print(datakelas)
+datakelas1 = []
+datakelas2 = []
+datakelas3 = []
+
+
+for j in range(len(datakelas)):
+	if (datakelas[j][0] == 0):
+		datakelas1.append(datakelas[j][1])
+		datakelas[j][0] = 1
+		# print(datakelas[j][1])
+	elif (datakelas[j][0] == 1):
+		datakelas2.append(datakelas[j][1])
+		datakelas[j][0] = 2
+		# print(datakelas[j][1])
+	elif (datakelas[j][0] == 2):
+		datakelas3.append(datakelas[j][1])
+		datakelas[j][0] = 3
+		# print(datakelas[j][1])
+print(datakelas)
+print("jumlah kelas 1",sum(datakelas1))
+print("jumlah kelas 2",sum(datakelas2))
+print("jumlah kelas 3",sum(datakelas3))
+
+
+
+# for z range(len(centroid)):
+
+		
 
 	
 
