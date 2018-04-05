@@ -6,7 +6,6 @@ from collections import Counter
 dataTrain = []
 x = []
 y = []
-arr = []
 
 # file = open('TrainsetTugas2.txt')
 
@@ -45,45 +44,52 @@ for i in range(len(dataTrain)):
 
 k = 3
 centroid = [[nmp.random.uniform(0,40),nmp.random.uniform(0,35)] for i in range(k)]
+print(centroid)
 
-# print("ini centroid")
-# print(centroid)
+for m in range(10):
+	dist = []
+	cent = 0
+	for i in range(len(centroid)):
+		dist.append([])
+		for j in range(len(dataTrain)):
+			hasil = euclid(dataTrain[j][0],dataTrain[j][1],centroid[i][0],centroid[i][1])
+			dist[cent].append(hasil)
+		cent+=1
+	# print("ini distance")
+	print(dist)
+	kelas = nmp.array(dist)
+	datakelas = []
+	avgx = []
+	avgy = []
+	avg = []
+	for i in range(len(kelas[0])):
+		kolom = kelas[:,i]
+		# print (kolom.tolist().index(min(kolom)))
+		datakelas.append([kolom.tolist().index(min(kolom))+1, dataTrain[i]])
+	print(datakelas)
 
-dist = []
-cent = 0
-for i in range(len(centroid)):
-	dist.append([])
-	for j in range(len(dataTrain)):
-		hasil = euclid(dataTrain[j][0],dataTrain[j][1],centroid[i][0],centroid[i][1])
-		dist[cent].append(hasil)
-	cent+=1
-print("ini distance")
-print(dist)
-kelas = nmp.array(dist)
-datakelas = []
-avg = []
-for i in range(len(kelas[0])):
-	kolom = kelas[:,i]
-	print (kolom.tolist().index(min(kolom)))
-	datakelas.append([kolom.tolist().index(min(kolom))+1, min(kolom)])
-print(datakelas)
+	dataClusterx = []
+	dataClustery = []
+	count = 0
+	jmldatapercluster = []
+	for s in range(k):
+		dataClusterx.append([])
+		dataClustery.append([])
+		for g in range(len(datakelas)):
+			if (datakelas[g][0] == s+1):
+				dataClusterx[count].append(datakelas[g][1][0])
+				dataClustery[count].append(datakelas[g][1][1])
+		if (len(dataClusterx[count]) != 0):
+			avg.append([sum(dataClusterx[count])/len(dataClusterx[count]),sum(dataClustery[count])/len(dataClustery[count])])
+		else :
+			avg.append(0)
+		count+=1
+	print(avg)
+	for h in range(len(avg)):
+		centroid.append[avg[h]]
+	print(centroid)
 
-dataCluster = []
-count = 0
-jmldatapercluster = []
-for s in range(k):
-	dataCluster.append([])
-	for g in range(len(datakelas)):
-		if (datakelas[g][0] == s+1):
-			dataCluster[count].append(datakelas[g][1])
-	if (len(dataCluster[count != 0])):
-		avg.append(sum(dataCluster[count])/len(dataCluster[count]))
-	else :
-		avg.append(0)
-# 	jmldatapercluster.append(len(dataCluster[count]))
-	count+=1
-print(dataCluster)
-print(jml)
+
 
 		
 
