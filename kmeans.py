@@ -61,49 +61,29 @@ print("ini distance")
 print(dist)
 kelas = nmp.array(dist)
 datakelas = []
-allAvg = []
+avg = []
 for i in range(len(kelas[0])):
 	kolom = kelas[:,i]
 	print (kolom.tolist().index(min(kolom)))
 	datakelas.append([kolom.tolist().index(min(kolom))+1, min(kolom)])
 print(datakelas)
+
 dataCluster = []
 count = 0
+jmldatapercluster = []
 for s in range(k):
 	dataCluster.append([])
 	for g in range(len(datakelas)):
 		if (datakelas[g][0] == s+1):
 			dataCluster[count].append(datakelas[g][1])
-	allAvg.append(sum(dataCluster[count])/)	
+	if (len(dataCluster[count != 0])):
+		avg.append(sum(dataCluster[count])/len(dataCluster[count]))
+	else :
+		avg.append(0)
+# 	jmldatapercluster.append(len(dataCluster[count]))
 	count+=1
 print(dataCluster)
-print(allAvg)
-# datakelas1 = []
-# datakelas2 = []
-# datakelas3 = []
-
-
-# for j in range(len(datakelas)):
-# 	if (datakelas[j][0] == 0):
-# 		datakelas1.append(datakelas[j][1])
-# 		datakelas[j][0] = 1
-# 		# print(datakelas[j][1])
-# 	elif (datakelas[j][0] == 1):
-# 		datakelas2.append(datakelas[j][1])
-# 		datakelas[j][0] = 2
-# 		# print(datakelas[j][1])
-# 	elif (datakelas[j][0] == 2):
-# 		datakelas3.append(datakelas[j][1])
-# 		datakelas[j][0] = 3
-# 		# print(datakelas[j][1])
-# print(datakelas)
-# print("jumlah kelas 1",sum(datakelas1))
-# print("jumlah kelas 2",sum(datakelas2))
-# print("jumlah kelas 3",sum(datakelas3))
-
-
-
-# for z range(len(centroid)):
+print(jml)
 
 		
 
