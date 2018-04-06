@@ -42,12 +42,12 @@ for i in range(len(dataTrain)):
 # pyplot.title('Visualisasi data training')
 # pyplot.show()
 k = 4
-centroidC = [[nmp.random.uniform(0,40),nmp.random.uniform(0,35)] for i in range(k)]
+centroidC = [[nmp.random.uniform(0,40),nmp.random.uniform(0,30)] for i in range(k)]
 print(centroidC)
 centroid= []
 
-while (centroidC != centroid):
-	for m in range(10):
+for m in range(100):
+	while (centroidC != centroid):
 		centroid = centroidC
 		dist = []
 		cent = 0
@@ -116,6 +116,9 @@ for i in range(len(clstr3)):
 	pyplot.scatter(clstr3[i][1][0],clstr3[i][1][1],color='b')
 for i in range(len(clstr4)):
 	pyplot.scatter(clstr4[i][1][0],clstr4[i][1][1],color='c')
+for i in range(len(centroid)):
+	pyplot.scatter(centroid[i][0],centroid[i][1],color='k')
+
 pyplot.title('Visualisasi data training')
 pyplot.show()	
 
